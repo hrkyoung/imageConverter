@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour to B&W Converter - History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            width: 500px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        .tab.active, .tab:hover {
+            border-bottom: 2px solid #4e73df;
+            color: #4e73df;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+        th {
+            font-weight: bold;
+            color: #555;
+        }
+        .download-link {
+            color: #4e73df;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .download-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Tabs Section -->
+        <div class="tabs">
+            <div class="tab"><a href="index.php" class="tab">INSTRUCTIONS</a></div>
+            <div class="tab"><a href="upload.php" class="tab">UPLOAD</a></div>
+            <div class="tab active"><a href="history.php" class="tab">HISTORY</a></div>
+        </div>
+
+        <!-- Table Section -->
+        <h1>COLOUR TO B&W HISTORY</h1>
+        <table>
+            <tr>
+                <th>Date Uploaded</th>
+                <th>Status</th>
+                <th>Original</th>
+                <th>Converted</th>
+            </tr>
+            {% for key in db %}
+                </tr>
+                    <td>{{ key.date }}</td>
+                    <td>{{ key.status }}</td>.
+                    <td><a href = {{ key.originalFilename }}>DOWNLOAD</a></td>
+                    <td>
+                          {% if key.convertedFile != null %}
+                                <a href = {{ key.convertedFile }}>DOWNLOAD</a>
+                          {% endif %}
+                        
+                    </td>
+                <tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

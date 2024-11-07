@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour to B&W Converter - Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            width: 500px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        .tab.active, .tab:hover {
+            border-bottom: 2px solid #4e73df;
+            color: #4e73df;
+            
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            text-align: left;
+            margin: 10px 0;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #3b5998;
+        }
+        .note {
+            font-size: 12px;
+            color: #888;
+            text-align: left;
+        }
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: Arial, sans-serif;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: Arial, sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Tabs Section -->
+        <div class="tabs">
+            <div class="tab"><a href="index.php" class="tab">INSTRUCTIONS</a></div>
+            <div class="tab active"><a href="upload.php" class="tab">UPLOAD</a></div>
+            <div class="tab"><a href="history.php" class="tab">HISTORY</a></div>
+        </div>
+
+        <!-- Main Content -->
+        <h1>COLOUR TO B&W</h1>
+        <p>Enter your email address. You will be emailed a link to your converted image. Support formats: PNG, JPG.</p>
+        <p>If you do not enter your email address, you can download your image by going to the history tab.</p>
+
+        <!-- Form Section -->
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <input type="email" name="email" placeholder="Email Address" class="input-field">
+            <input type="file" name="image" accept=".jpg, .jpeg, .png" class="button" style="width: 50%; margin-top: 10px;">
+            <button type="submit" class="button" value="Upload Image" name="submit" style="width: 100%; margin-top: 10px;">Upload</button>
+        </form>
+
+        {% if uploadSucess == true %}
+            <div class="alert alert-success"><p>Uploaded Successfully. Your file is on the way</p></div>
+        {% endif %}
+
+        {% if uploadSucess == false and uploadSucess != null %}
+            <div class="alert alert-danger"><p>Upload Fail. Your file may be too large</p></div>
+        {% endif %}
+
+        <!-- Note Section -->
+        <p class="note">Note: the uploader does not check for duplicates. You can upload images as many times as you want.</p>
+    </div>
+</body>
+</html>
